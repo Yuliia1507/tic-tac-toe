@@ -7,16 +7,17 @@ const initialGameBoard = [
 ]
 
 
-export default function GameBoard() {
+export default function GameBoard({ onSelectSuare, activePlayerSymbol }) {
 	const [gameBoard, setGameBoard] = useState(initialGameBoard)
 
 	function handleSelectSuare(rowIndex, colIndex) {
 		setGameBoard((prevGameBoard) => {
 			const updatedBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-			updatedBoard[rowIndex][colIndex] = 'X';
+			updatedBoard[rowIndex][colIndex] = activePlayerSymbol;
 			return updatedBoard
 		}
 		)
+		onSelectSuare()
 	}
 	return (
 		<ol id="game-board">
